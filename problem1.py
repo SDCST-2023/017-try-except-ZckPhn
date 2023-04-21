@@ -30,8 +30,40 @@ c:16
 The roots are -4.0 and -4.0
 """
 import os
-os.system('cls')
+import math
 
+while True:
+  os.system('cls')
+  print("Enter in the coefficients for a quadratic equation in the format:")
+  print("  ax^2 + bx + c = 0")
 
-print("Enter in the coefficients for a quadratic equation in the format:")
-print("  ax^2 + bx + c = 0")
+  while True:
+    try:
+      a = float(input("a: "))
+      b = float(input("b: "))
+      c = float(input("c: "))
+      break
+    except ValueError:
+      print("Those are not valid values for a, b or c")
+      discriminant = b ** 2 - 4 * a * c
+
+      if discriminant < 0:
+        print("There are no real roots to the equation")
+      else:
+        frstroot = (-b + math.sqrt(discriminant)) / (2*a)
+        scndroot = (-b - math.sqrt(discriminant)) / (2*a)
+        break
+    except ValueError as e:
+      print(e)
+      while True:
+        answer = input("Do you want to try again? y/n ")
+        if answer.lower() == "y":
+          break
+        elif answer.lower() == "yes":
+          break
+        elif answer.lower() == "n":
+          exit
+        elif answer.lower() == "no":
+          exit
+
+        print(f"The roots are {frstroot} and {scndroot}")
